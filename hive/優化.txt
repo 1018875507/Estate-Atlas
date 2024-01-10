@@ -1,0 +1,11 @@
+select business,year,number
+from
+(select business,map('2022',a2022,'2021',a2021,'2020',a2020,'2019',a2019,'2018',a2018,'2017',a2017,'2016',a2016,'2015',a2015,'2014',a2014,'2013',a2013) as value from business_operations) t1
+lateral view explode(value) temp_view as year,number;
+優化成功
+
+create table test1 as
+select business,year,number
+from
+(select business,map('2022',a2022,'2021',a2021,'2020',a2020,'2019',a2019,'2018',a2018,'2017',a2017,'2016',a2016,'2015',a2015,'2014',a2014,'2013',a2013) as value from business_operations) t1
+lateral view explode(value) temp_view as year,number;

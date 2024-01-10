@@ -1,0 +1,19 @@
+create table dwd_annual_average_price as select * from ods.annual_average_price ;
+
+create table dwd_annual_total_sales_area as select * from ods.annual_total_sales_area;
+
+create table dwd_annual_total_sales_revenue as select * from ods.annual_total_sales_revenue;
+
+ create table dwd_assets_liabilities as select * from  ods.assets_liabilities;
+
+create table dwd_business_operations as select * from ods.business_operations;
+
+create table dwd_completed_area_of_major_cities as select * from  ods.completed_area_of_major_cities;
+
+create table dwd_main_urban_construction_area as select * from ods.main_urban_construction_area;
+
+create table dwd_regional_housing_prices as select * from ods.regional_housing_prices;
+
+create table dwd_regional_housing_sales_area as select * from ods.regional_housing_sales_area;
+
+create table dwd_regional_housing_sales_revenue as select * from ods.regional_housing_sales_revenue;

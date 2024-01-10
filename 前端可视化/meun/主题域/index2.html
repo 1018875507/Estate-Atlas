@@ -1,0 +1,106 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>房地产区域分析</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/china.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript" src="js/Bubble.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    #scroll-container {
+      height: 200px;
+      width: 700px;
+      overflow-y: hidden; /* 或使用 overflow-y: scroll; */
+	    background: no-repeat 50%/70% rgba(0, 0, 0, 0.1);
+  	  color: #69ca62;
+      box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+    }
+	.list-item {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: inline-block;
+    }
+
+	  
+
+	
+
+  </style>
+
+</head>
+<body>
+	<div class="head clearfix">
+		<a href="../index.html"><h1 class="pulll_left">房地产区域分析</h1></a>
+		<div class="menu menu2 pulll_left"></div>
+		<div class="time" id="showTime">2018/6/12 17:00:12</div>
+<script>
+var t = null;
+    t = setTimeout(time,1000);//開始运行
+    function time()
+    {
+       clearTimeout(t);//清除定时器
+       dt = new Date();
+		var y=dt.getFullYear();
+		var mt=dt.getMonth()+1;
+		var day=dt.getDate();
+       var h=dt.getHours();//获取时
+       var m=dt.getMinutes();//获取分
+       var s=dt.getSeconds();//获取秒
+       document.getElementById("showTime").innerHTML = y+"/"+mt+"/"+day+" "+h+":"+m+":"+s+"";
+       t = setTimeout(time,1000); //设定定时器，循环运行     
+    } 
+</script>
+	</div>
+	<div class="mainbox">
+		<ul class="clearfix nav1">
+			 <li style="width: 50%">
+			<div class="box">
+				<div class="tit">企业负债率</div>
+				<div id="fuzhai" class="boxnav"  style="height: 250px;"></div>
+			</div></li>
+			<li style="width: 50%">
+			<div class="box">
+				<div class="tit">企业收入组成</div>
+				<div id="duidie" class="boxnav" style="height: 250px;"></div>
+			</div>
+			</li> 
+			<li style="width: 50%">
+				<div class="box">
+					<div class="tit">企业施工完成</div>
+					<div class="boxnav" style="height: 250px;">
+						<span style="padding: 10px;">地区</span>
+						<span style="padding: 20px;">年份</span>
+						<span style="padding: 10px;">施工面积</span>
+						<span style="padding: 20px;">完成面积</span>
+						<span style="padding: 20px;">当年完成率</span>
+						<div id="scroll-container" ></div>
+						
+					</div>
+				</div>
+			</li> 
+			<li style="width: 50%">
+				<div class="box">
+					<div class="tit">企业利润和税金</div>
+					<div class="boxnav" style="height: 250px;">
+            <div id="rate"style="height: 250px; width: 700px;" ></div>
+          </div>
+				</div>
+			</li> 
+		</ul>
+		
+		 
+		
+		
+	</div>
+</body>
+<script src="js/duidie.js"></script>
+<script src="js/fuzhai.js"></script>
+<script src="js/scroll1.js"></script>
+<script src="js/rate.js"></script>
+
+</html>

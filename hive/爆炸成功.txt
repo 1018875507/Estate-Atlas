@@ -1,0 +1,23 @@
+select map("2012",a2012,"2013",a2013,"2014",a2014) from city_explode;
+
+select city,year,number
+from(
+ select city,year,number
+ from city_explode
+ lateral view explode(select map("2012",a2012,"2013",a2013,"2014",a2014) from city_explode) temp_view as year , number
+)aa;
+
+create table city_explode_temp as
+select city,map("2012",a2012,"2013",a2013,"2014",a2014) as number  from city_explode;
+
+select city,year,value
+from(
+select city,year,value
+from city_explode
+lateral view explode(number) city_view as year,value
+)
+
+select city,year,value
+from city_explode_temp
+lateral view explode(number) city_view as year,value;
+

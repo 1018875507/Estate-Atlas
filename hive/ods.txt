@@ -1,0 +1,117 @@
+
+创表
+hive> create table Business_operations(
+    > byear string,
+    > main_business_income double,
+    > land_transfer_income double,
+    > house_sales_income double,
+    > rental_income_from_housing double,
+    > other_income double,
+    > taxes_and_surcharges double,
+    > operating_profit double)
+    > row format delimited
+    > fields terminated by ',';
+
+hive> create table Assets_liabilities(
+    > byear string,
+    > assets_liabilities double)
+    > row format delimited
+    > fields terminated by ',';
+
+hive> create table Annual_average_price(
+    > index string,
+    > annual_average_price double)
+    > row format delimited
+    > fields terminated by ',';
+
+hive> create table Annual_total_sales_revenue(
+    > byear string,
+    > annual_total_sales_revenue double)
+    > row format delimited
+    > fields terminated by ',';
+
+hive> create table Annual_total_sales_area(
+    > byear string,
+    > annual_total_sales_area double)
+    > row format delimited
+    > fields terminated by ',';
+
+hive> create table Regional_housing_prices(
+    > byear string,
+    > beijing double,
+    > tianjin double,
+    > hebei double,
+    > shan1xi double,
+    > neimenggu double,
+    > liaoning double,
+    > jilin double,
+    > heilongjiang double,
+    > shanghai double,
+    > jiangsu double,
+    > zhejiang double,
+    > anhui double,
+    > fujian double,
+    > jiangxi double,
+    > shandong double,
+    > henan double,
+    > hubei double,
+    > hunan double,
+    > guangdong double,
+    > guangxi double,
+    > hainan double,
+    > chongqing double,
+    > sichuan double,
+    > guizhou double,
+    > yunnan double,
+    > xizang double,
+    > shan3xi double,
+    > gansu double,
+    > qinghai double,
+    > ningxia double,
+    > xinjiang double)
+    > row format delimited
+    > fields terminated by ',';
+
+create table Regional_housing_sales_revenue like Regional_housing_prices;
+
+hive> create table Completed_area_of_major_cities(
+    > byear string,
+    > beijing double,
+    > tianjin double,
+    > shijiazhuang double,
+    > taiyuan double,
+    > huhehaote double,
+    > shenyang double,
+    > dalian double,
+    > changchun double,
+    > haerbin double,
+    > shanghai double,
+    > nanjing double,
+    > hangzhou double,
+    > ningbo double,
+    > hefei double,
+    > fuzhou double,
+    > xiamen double,
+    > nanchang double,
+    > jinan double,
+    > qingdao double,
+    > zhengzhou double,
+    > wuhan double,
+    > changsha double,
+    > guangzhou double,
+    > shenzhen double,
+    > nanning double,
+    > haikou double,
+    > chongqing double,
+    > chengdu double,
+    > guiyang double,
+    > kunming double,
+    > xian double,
+    > lanzhou double,
+    > xining double,
+    > yinchuan double,
+    > wulumuqi double)
+    > row format delimited
+    > fields terminated by ',';
+
+

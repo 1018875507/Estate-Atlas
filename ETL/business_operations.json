@@ -1,0 +1,62 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                "channel": 3
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "hdfsreader",
+                    "parameter": {
+                        "path": "/house/data/ads/business_operations/*",
+                        "defaultFS": "hdfs://master:9000",
+                        "column": [
+                               {
+                                "index": 0,
+                                "type": "string"
+                               },
+                               {
+                                "index": 1,
+                                "type": "string"
+                               },
+                               {
+                                "index": 2,
+                                "type": "double"
+                               }
+                        ],
+                        "fileType": "text",
+                        "encoding": "UTF-8",
+                        "fieldDelimiter": ","
+                    }
+
+                },
+                "writer": {
+                    "name": "mysqlwriter",
+                    "parameter": {
+                        "writeMode": "insert",
+                        "username": "root",
+                        "password": "123456",
+                        "column": [
+                            "business",
+                            "year",
+                            "number"
+                        ],
+                        "preSql": [
+                            "delete from business_operations"
+                        ],
+                        "connection": [
+                            {
+                                "jdbcUrl": "jdbc:mysql://127.0.0.1:3306/house?useUnicode=true&characterEncoding=UTF-8",
+                                "table": [
+                                    "business_operations"
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>某公司大数据监控平台</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/echarts.min.js"></script>
+<script type="text/javascript" src="js/china.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+<script type="text/javascript" src="js/js.js"></script>
+<script type="text/javascript" src="js/Bubble.js"></script>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+    #scroll-container {
+      height: 200px;
+      width: 700px;
+      overflow-y: hidden; /* 或使用 overflow-y: scroll; */
+	    background: no-repeat 50%/70% rgba(0, 0, 0, 0.1);
+  	  color: #69ca62;
+      box-shadow: inset 0 0 0 1px rgba(105, 202, 98, 0.5);
+    }
+	.list-item {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
+      display: inline-block;
+    }
+
+	  
+
+	
+
+  </style>
+
+</head>
+<body>
+	<div class="head clearfix">
+		<a href="../index.html"><h1 class="pulll_left">房价因素分析及预测</h1></a>
+		<div class="menu menu2 pulll_left"></div>
+		<div class="time" id="showTime">2018/6/12 17:00:12</div>
+<script>
+var t = null;
+    t = setTimeout(time,1000);//開始运行
+    function time()
+    {
+       clearTimeout(t);//清除定时器
+       dt = new Date();
+		var y=dt.getFullYear();
+		var mt=dt.getMonth()+1;
+		var day=dt.getDate();
+       var h=dt.getHours();//获取时
+       var m=dt.getMinutes();//获取分
+       var s=dt.getSeconds();//获取秒
+       document.getElementById("showTime").innerHTML = y+"/"+mt+"/"+day+" "+h+":"+m+":"+s+"";
+       t = setTimeout(time,1000); //设定定时器，循环运行     
+    } 
+</script>
+	</div>
+	<div class="mainbox">
+		<ul class="clearfix nav1">
+			 <li style="width: 50%;">
+			<div class="box">
+				<div class="tit">相关系数分析
+                    <span><select>
+                        <option>0:房地产开发企业个数</option>
+                        <option>1:房地产开发企业平均从业人数</option>
+                        <option>2:房地产开发企业待开发土地面积</option>
+                        <option>3:房地产开发企业计划总投资</option>
+                        <option>4:商品房销售面积</option>
+                        <option>5:商品房销售额</option>
+                        <option>6:房地产开发企业资产负债率</option>
+                        <option>7:房地产开发企业资产总计</option>
+                        <option>8:房地产开发企业营业利润</option>
+                        <option>9:房地产开发企业主营业务税金及附加</option>
+                        <option>10:房地产开发企业施工房屋面积</option>
+                        <option>11:房地产开发企业竣工房屋面积</option>
+                        <option>12:商品房平均销售价格</option>
+                </select></span>
+                    
+                </div>
+                
+                <div class="boxnav" >
+                <div id="reli" style="width: 700px; height: 500px;"></div>
+                </div>
+				
+			</div></li>
+			<li style="width: 50%; ">
+			<div class="box">
+				<div class="tit">回归特征贡献占比</div>
+                <div class="boxnav">
+                    <div id="tezheng" style="width: 700px; height: 500px;"></div>
+                </div>
+				
+			</div>
+			</li> 
+			<li style="width: 50%;position:absolute;top:667px">
+				<div class="box">
+					<div class="tit">模型评估</div>
+                    <div class="boxnav" >
+                        <div id="pinggu" style="width: 700px; height: 500px;">
+                           <table>
+                            <tr>
+                                <th>因变量1.房地产开发企业从业人数2.房地产开发企业计划总投资3.房地产开发企业资产总计</th>
+
+                            </tr>
+                            <tr>
+                                <th>自变量商品房平均销售价格</th>
+                                
+                            </tr>
+                            <tr>
+                                <th>R-squared:0.910 ADJR-squared:0.923 衡量模型对观测数据的拟合程度，取值范围在0到1之间。0表示模型无拟合能力，1表示完美拟合。在这个例子中，R平方为0.91，说明模型很好地解释了因变量的变化。</th>
+                            </tr>
+                            <tr>
+                                <th>F-statistic（F统计量）:527.8用于检验模型整体的显著性。在这个例子中，F-statistic为527.8，对应的Prob (F-statistic)为3.33e-16，非常接近零，表示模型整体上是显著的。</th>
+                            </tr>
+                            <tr>
+                                <th>AIC:286.2 BIC:290.2 AIC (Akaike Information Criterion) and BIC (Bayesian Information Criterion):
+
+                                    信息准则，用于评估模型的拟合效果。AIC 和 BIC 越小，表示模型越好。这两个指标考虑了拟合的同时也考虑了模型的复杂性。</th>
+                            </tr>
+                           </table>                           
+                        </div>
+                    </div>
+				</div>
+			</li> 
+            <li style="width: 50%">
+				<div class="box">
+					<div class="tit">预测展示</div>
+                    <div class="boxnav" >
+                        <div id="huigui" style="width: 700px; height: 500px;"></div>
+                    </div>
+				</div>
+			</li> 
+			
+		</ul>
+		
+		 
+		
+		
+	</div>
+</body>
+<script src="js/reli.js"></script>
+<script src="js/tezheng.js"></script>
+<script src="js/huigui.js"></script>
+</html>

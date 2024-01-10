@@ -1,0 +1,2 @@
+年度表字段统一
+alter table dwd_annual_average_price change index byear string;

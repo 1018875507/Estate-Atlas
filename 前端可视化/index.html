@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- https://codepen.io/danielkvist/pen/LYNVyPL -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index_bg.css">
+</head>
+<body>
+
+    
+    <div class="bg"></div>
+
+  <div class="container right-panel-active" style="position: fixed;">
+    <!-- Sign Up -->
+    <div class="container__form container--signup">
+      <form action="#" class="form" id="form1">
+        <h2 class="form__title">Sign Up</h2>
+        <input type="text" placeholder="User" class="input" />
+        <input type="email" placeholder="Email" class="input" />
+        <input type="password" placeholder="Password" class="input" />
+        <button class="btn">Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Sign In -->
+    <div class="container__form container--signin">
+      <form action="#" class="form" id="form2">
+        <h2 class="form__title">Sign In</h2>
+        <input type="email" placeholder="Email" class="input" />
+        <input type="password" placeholder="Password" class="input" />
+        <a href="#" class="link">Forgot your password?</a>
+        <button class="btn" onclick="window.location.href='./meun/index.html'">Sign In</button>
+      </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="container__overlay">
+      <div class="overlay">
+        <div class="overlay__panel overlay--left">
+          <button class="btn" id="signIn">Sign In</button>
+        </div>
+        <div class="overlay__panel overlay--right">
+          <button class="btn" id="signUp">Sign Up</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const PARTICLE_SUM = 32; // 粒子总数量
+    const bg = document.querySelector(".bg");
+    const particle_style = document.createElement('style');
+    document.head.appendChild(particle_style);
+
+    for (let i = 0; i < PARTICLE_SUM; i++) {
+        // 创建粒子
+        particle = document.createElement("div");
+
+        // 下面设置粒子属性
+        let size = Math.random() * 4;
+        particle_style.sheet.insertRule(`
+            .bg>div:nth-child(${i + 1}) {
+                top: ${Math.random() * 100}vh;
+                left: ${Math.random() * 100}vw;
+                width: ${size + 2}vh;
+                height: ${size + 2}vh;
+                background: rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, ${Math.random()});
+                box-Shadow: 0 0 ${Math.random() * 6}vh rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, ${Math.random()});
+                opacity: 0;
+                animation: anime${i} 8s linear ${Math.random() * 8}s infinite;
+            }
+        `);
+
+        // 下面生成帧动画
+        let xoffsetbase = Math.random() * 5;
+        let yoffsetbase = Math.random() * 5 + 10;
+        particle_style.sheet.insertRule(`
+        @keyframes anime${i} {
+            0% { opacity: 0; translate: calc(${xoffsetbase - 2.5}vw) calc(${-yoffsetbase}vh); }
+            25% { opacity: 1; }
+            50% { opacity: 0; translate: 0 0; }
+            75% { opacity: 1; }
+            100% { opacity: 0; translate: calc(${xoffsetbase + 2.5}vw) calc(${yoffsetbase}vh); }
+        }
+        `);
+
+        // 将粒子插入到背景
+        bg.appendChild(particle);
+    }
+</script>
+
+  <script>
+
+
+    const signInBtn = document.getElementById("signIn");
+    const signUpBtn = document.getElementById("signUp");
+    const fistForm = document.getElementById("form1");
+    const secondForm = document.getElementById("form2");
+    const container = document.querySelector(".container");
+
+    signInBtn.addEventListener("click", () => {
+      container.classList.remove("right-panel-active");
+    });
+
+    signUpBtn.addEventListener("click", () => {
+      container.classList.add("right-panel-active");
+    });
+
+    fistForm.addEventListener("submit", (e) => e.preventDefault());
+    secondForm.addEventListener("submit", (e) => e.preventDefault());
+
+  </script>
+</body>
+
+</html>
